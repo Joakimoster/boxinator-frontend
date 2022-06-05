@@ -1,24 +1,30 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import CountryDropDown from "../components/form/CountryDropDown"
 
 function BoxFormView() {
 
-    const { formData, setFormData } = useState({
-        name: '',
-        weight: '',
-        color: '',
-        select: ''
-    });
+    const [name, setName] = useState("")
+    const [weight, setWeight] = useState("")
+    const [color, setColor] = useState("")
 
-    const onInputChange = event => {
+    const dispatch = useDispatch();
+
+    const onSubmitNewBox = (e) => {
+        e.preventDefault();
+        name,
+        weight,
+        color
+    }
+
+    /*const onInputChange = event => {
         setFormData({
             ...formData,
             [event.target.id]: event.target.value
         })
-    }
-
+    }*/
     return (
-        <form>
+        <form onSubmit={onSubmitNewBox}>
 
             <h1>Add a new box</h1>
             <p>Welcome to boxinator application!</p>
@@ -28,7 +34,7 @@ function BoxFormView() {
                 <input
                     type="text"
                     id="name"
-                    onChange={onInputChange}
+                    onChange={(e) => setName(e.target.value)}
                 >
                 </input>
             </div>
@@ -38,7 +44,7 @@ function BoxFormView() {
                 <input
                     type="text"
                     id="weight"
-                    onChange={onInputChange}
+                    onChange={(e) => setWeight(e.target.value)}
                 >
                 </input>
             </div>
@@ -48,14 +54,14 @@ function BoxFormView() {
                 <input
                     type="color"
                     id="color"
-                    onChange={onInputChange}
+                    onChange={(e) => setColor(e.target.value)}
                 >
                 </input>
             </div>
 
             <div>
                 <label>Country</label>
-                <select id="dropdown" onChange={onInputChange}>
+                <select id="dropdown">
                     <option value="Sweden">Sweden</option>
                     <option value="China">China</option>
                     <option value="Brazil">Brazil</option>
