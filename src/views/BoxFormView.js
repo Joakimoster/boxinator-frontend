@@ -3,7 +3,7 @@ import CountryDropDown from "../components/form/CountryDropDown"
 
 function BoxFormView() {
 
-    const [ formData, setFormData ] = useState({
+    const { formData, setFormData } = useState({
         name: '',
         weight: '',
         color: '',
