@@ -8,8 +8,6 @@ function BoxFormView() {
 
     const [ values, setValues ] = useState({ name: "", weight: null, color: "", shippingCost: null });
 
-    const { box, loading } = useSelector((state) => ({...state.app}))
-
     const dispatch = useDispatch();
 
     const handleOnSubmit = (e) => {
@@ -51,12 +49,16 @@ function BoxFormView() {
 
             <div>
                 <label>Box colour</label>
-                <input type="text" id="colorText" value={values.color} placeholder="Click to show color picker">
+                <input
+                    type="text"
+                    id="colorText"
+                    value={values.color}
+                    placeholder="Click to show color picker">
                 </input>
                 <input
                     type="color"
                     id="color"
-                    onChange={(e) => setValues({...values, color: rgbValueConverter(e.target.value) })}
+                    onChange={(e) => setValues({ ...values, color: rgbValueConverter(e.target.value) })}
                     value={values.color}
                     name="color"
                 >

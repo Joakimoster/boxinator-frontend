@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getAllBoxes = createAsyncThunk(
-    "box/getBoxes",
+    "box/getAllBoxes",
     async () => {
-        return fetch (`https://localhost:8080/api/box/v1/boxes`)
+        return fetch ("http://localhost:8080/api/box/v1/boxes")
         .then((res) => {
             res.json();
         });
