@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Middleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { formSlice } from "../reducers/formSlice";
+import BoxReducer from "../slices/boxFormSlice"
 
-export default configureStore({
+const store = configureStore({
     reducer: {
-        boxes: formSlice,
+        app: BoxReducer,
     },
-})
+});
+
+export default store;

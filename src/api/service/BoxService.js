@@ -1,16 +1,13 @@
-import http from "../http-common";
+//import http from "../http-common";
+import axios from "axios";
 
-const getAll = () => {
-    return http.get("/boxes");
+class BoxDataService {
+    getAll = () => {
+        return axios.get("/boxes");
+    }
+    addBox = data => {
+        return axios.post("/box", data);
+    }
 }
 
-const addBox = data => {
-    return http.post("/box", data);
-}
-
-const BoxService = {
-    getAll,
-    addBox
-}
-
-export default BoxService
+export default new BoxDataService();
