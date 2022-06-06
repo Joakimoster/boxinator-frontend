@@ -1,30 +1,24 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import CountryDropDown from "../components/form/CountryDropDown"
+import { useSelector, useDispatch } from "react-redux"
+import { createNewBox } from "../redux/slices/BoxFormSlice"
 
 function BoxFormView() {
 
-    const [name, setName] = useState("")
-    const [weight, setWeight] = useState("")
-    const [color, setColor] = useState("")
+    const [ values, setValues ] = useState({ name: "", weight: null, color: "", shippingCost: null });
+
+    const { box, loading } = useSelector((state) => ({...state.app}))
 
     const dispatch = useDispatch();
 
-    const onSubmitNewBox = (e) => {
+    const handleOnSubmit = (e) => {
         e.preventDefault();
-        name,
-        weight,
-        color
+        dispatch(createNewBox({values}))
+        setValues({ name: "", weight: null, color: "", shippingCost: null });
+        console.log(values);
     }
 
-    /*const onInputChange = event => {
-        setFormData({
-            ...formData,
-            [event.target.id]: event.target.value
-        })
-    }*/
     return (
-        <form onSubmit={onSubmitNewBox}>
+        <form onSubmit={handleOnSubmit}>
 
             <h1>Add a new box</h1>
             <p>Welcome to boxinator application!</p>
@@ -34,7 +28,9 @@ function BoxFormView() {
                 <input
                     type="text"
                     id="name"
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setValues({...values, name: e.target.value })}
+                    value={values.name}
+                    name="name"
                 >
                 </input>
             </div>
@@ -42,9 +38,11 @@ function BoxFormView() {
             <div>
                 <label>Weight</label>
                 <input
-                    type="text"
+                    type="number"
                     id="weight"
-                    onChange={(e) => setWeight(e.target.value)}
+                    onChange={(e) => setValues({...values, weight: e.target.value })}
+                    value={values.weight}
+                    name="weight"
                 >
                 </input>
             </div>
@@ -52,9 +50,23 @@ function BoxFormView() {
             <div>
                 <label>Box colour</label>
                 <input
-                    type="color"
+                    type="text"
                     id="color"
-                    onChange={(e) => setColor(e.target.value)}
+                    onChange={(e) => setValues({...values, color: e.target.value })}
+                    value={values.color}
+                    name="color"
+                >
+                </input>
+            </div>
+
+            <div>
+                <label>ShippingCost</label>
+                <input
+                    type="number"
+                    id="shippingCost"
+                    onChange={(e) => setValues({...values, shippingCost: e.target.value })}
+                    value={values.shippingCost}
+                    name="shippingCost"
                 >
                 </input>
             </div>
@@ -69,9 +81,9 @@ function BoxFormView() {
                 </select>
             </div>
             
-            <button type="submit">Save</button>
+            <button type="sumbit">Save</button>
         </form>
     )
 }
 
-export default BoxFormView
+export default BoxFormView;

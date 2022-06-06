@@ -1,18 +1,33 @@
-export const ACTION_FORM_SUBMIT_ATTEMPTING = '[submit] ATTEMPT';
-export const ACTION_FORM_SUBMIT_SUCCESS = '[submit] SUCCESS';
-export const ACTION_FORM_SUBMIT_ERROR = '[submit] ERROR';
+import {
+    ADD_BOX,
+    GET_BOXES
+} from "./types"
 
-export const formSubmitAttemptingAction = inputs => ({
-    type: ACTION_FORM_SUBMIT_ATTEMPTING,
-    payload: inputs
-})
+import BoxService from "../../api/service/BoxService"
 
-export const formSubmitSucessAction = validData => ({
-    type: ACTION_FORM_SUBMIT_SUCCESS,
-    payload: validData
-})
+export const addBox = (name, weight, color, shippingCost) => async (dispatch) => {
+    try {
+        const res = await BoxService.create({ name, weight, color, shippingCost });
 
-export const formSubmitErrorAction = error => ({
-    type: ACTION_FORM_SUBMIT_ERROR,
-    payload: error
-})
+        dispatch({
+            type: ADD_BOX,
+            payload: res.data,
+        });
+        return Promise.resolve(res.data);
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const getBoxes = () => async (dispatch) => {
+    try {
+        const res = await BoxService.getAll();
+
+        dispatch({
+            type: GET_BOXES,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}

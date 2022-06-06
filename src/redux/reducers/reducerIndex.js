@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import { formReducer } from "./formReducer";
+import formReducer from "./formReducer";
 
-const appReducer = combineReducers({
-    formReducer
-})
-
-export default appReducer
+export default combineReducers({
+    formReducer,
+});

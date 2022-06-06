@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import appReducer from "../reducers/reducerIndex";
-import { formMiddleware } from "../middleware/formMiddleware";
-import { Middleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { formSlice } from "../reducers/formSlice";
+import BoxReducer from "../slices/BoxFormSlice"
 
-export default configureStore({
+const store = configureStore({
     reducer: {
-        form: formSlice,
-    }
-})
+        app: BoxReducer,
+    },
+});
+
+export default store;
