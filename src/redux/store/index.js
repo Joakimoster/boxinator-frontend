@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import BoxReducer from "../slices/boxFormSlice"
+import BoxReducer from "../slices/BoxFormSlice"
 
 const store = configureStore({
     reducer: {

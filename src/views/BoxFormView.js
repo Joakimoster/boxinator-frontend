@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { createNewBox } from "../redux/slices/boxFormSlice"
+import { createNewBox } from "../redux/slices/BoxFormSlice"
 
 function BoxFormView() {
 

@@ -30,14 +30,14 @@ export const createNewBox = createAsyncThunk(
 
 const boxFormSlice = createSlice({
 
-    name: 'boxes',  //Name to identify the slice
+    name: 'boxes',
     initialState: {
         box: [],
         loading: false,
         error: null
     },
 
-    extraReducers: {    //Reducers
+    extraReducers: {
 
         [createNewBox.pending]: (state, action) => {
             state.loading = true;
