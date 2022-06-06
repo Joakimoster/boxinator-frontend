@@ -1,60 +1,111 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import CountryDropDown from "../components/form/CountryDropDown"
+import { addBox } from "../redux/actions/apiAction"
 
 function BoxFormView() {
-
     const [name, setName] = useState("")
     const [weight, setWeight] = useState("")
     const [color, setColor] = useState("")
-
     const dispatch = useDispatch();
-
+    const handleTextChange = event => {
+        const {target: {name, value}} = event;
+        this.useState({ [name]: value})
+    }
     const onSubmitNewBox = (e) => {
         e.preventDefault();
-        name,
-        weight,
-        color
     }
 
-    /*const onInputChange = event => {
-        setFormData({
-            ...formData,
-            [event.target.id]: event.target.value
+    const initialFormState = {
+        name: "",
+        weight: null,
+        color: "",
+        shippingCost: null
+    }
+
+    const [box, setBox] = useState(initialFormState);
+    const [submitted, setSubmitted] = useState(false);
+    const handleInputChange = event => {
+        const { name, value } = event.target;
+        setBox({ ...box, [name]: value });
+    }
+    const saveBox = () => {
+        const { name, weight, color, shippingCost} = box;
+
+        dispatch(addBox(name, weight, color, shippingCost))
+        .then(data => {
+            setBox({
+                name: data.name,
+                weight: data.weight,
+                color: data.color,
+                shippingCost: data.shippingCost
+            });
+            setSubmitted(true);
+            console.log(data)
         })
-    }*/
+        .catch(e => {
+            console.log(e)
+        })
+    }
+    const newBox = () => {
+        setBox(initialFormState);
+        setSubmitted(false);
+    }
+
     return (
-        <form onSubmit={onSubmitNewBox}>
+        <form>
 
             <h1>Add a new box</h1>
             <p>Welcome to boxinator application!</p>
 
             <div>
-                <label>Name</label>
+                <label htmlFor="name">Name</label>
                 <input
                     type="text"
                     id="name"
-                    onChange={(e) => setName(e.target.value)}
+                    required
+                    value={box.name}
+                    onChange={handleInputChange}
+                    name="name"
                 >
                 </input>
             </div>
 
             <div>
-                <label>Weight</label>
+                <label htmlfor="weight">Weight</label>
                 <input
                     type="text"
                     id="weight"
-                    onChange={(e) => setWeight(e.target.value)}
+                    required
+                    value={box.weight}
+                    onChange={handleInputChange}
+                    name="weight"
                 >
                 </input>
             </div>
 
             <div>
-                <label>Box colour</label>
+                <label htmlFor="Box color">Box colour</label>
                 <input
-                    type="color"
+                    type="text"
                     id="color"
-                    onChange={(e) => setColor(e.target.value)}
+                    required
+                    value={box.color}
+                    onChange={handleInputChange}
+                    name="color"
+                >
+                </input>
+            </div>
+
+            <div>
+                <label htmlfor="shippingCost">ShippingCost</label>
+                <input
+                    type="text"
+                    id="shippingCost"
+                    required
+                    value={box.shippingCost}
+                    onChange={handleInputChange}
+                    name="shippingCost"
                 >
                 </input>
             </div>
@@ -69,9 +120,9 @@ function BoxFormView() {
                 </select>
             </div>
             
-            <button type="submit">Save</button>
+            <button onClick={saveBox}>Save</button>
         </form>
     )
 }
 
-export default BoxFormView
+export default BoxFormView;

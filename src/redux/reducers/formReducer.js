@@ -1,6 +1,39 @@
-import { ACTION_FORM_SUBMIT_ATTEMPTING, ACTION_FORM_SUBMIT_ERROR, ACTION_FORM_SUBMIT_SUCCESS } from "../actions/formAction"
+import {
+    ADD_BOX,
+    GET_BOXES
+} from "../actions/types"
 
-const initialState = {
+const initialState = [];
+
+const formReducer = (boxes = initialState, action) => {
+    const { type, payload } = action;
+
+    switch (type) {
+        case ADD_BOX:
+            return [...boxes, payload];
+        case GET_BOXES:
+            return payload;
+        default:
+            return boxes;
+    }
+}
+
+export default formReducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const initialState = {
     formAttempting: false,
     onSubmitError: ''
 }
@@ -27,4 +60,4 @@ export const formReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+}*/

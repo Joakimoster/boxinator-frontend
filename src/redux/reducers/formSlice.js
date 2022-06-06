@@ -1,15 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+    name: '',
+    weight: null,
+    color: '',
+    shippingCost: null
+};
 
-export const formSlice = createSlice({
+const formSlice = createSlice({
 
-    name: 'newBox',
+    name: 'boxes',
     initialState,
 
     reducers: {
-        submit: (state, action) => {
-            state.newBox = action.payload;
+        addNewBox: (state, param) => {
+            const { payload } = param;
+            state.boxes = [...state.boxes, payload]
         }
     }
 })
+
+const { actions, reducer } = formSlice;
+export const { addNewBox } = actions;
+export default reducer;
