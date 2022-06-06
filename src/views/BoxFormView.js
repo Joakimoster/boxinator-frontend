@@ -28,7 +28,6 @@ function BoxFormView() {
                 <input
                     type="text"
                     id="name"
-                    required
                     onChange={(e) => setValues({...values, name: e.target.value })}
                     value={values.name}
                     name="name"
@@ -41,7 +40,6 @@ function BoxFormView() {
                 <input
                     type="number"
                     id="weight"
-                    required
                     onChange={(e) => setValues({...values, weight: e.target.value })}
                     value={values.weight}
                     name="weight"
@@ -54,7 +52,6 @@ function BoxFormView() {
                 <input
                     type="text"
                     id="color"
-                    required
                     onChange={(e) => setValues({...values, color: e.target.value })}
                     value={values.color}
                     name="color"
@@ -67,7 +64,6 @@ function BoxFormView() {
                 <input
                     type="number"
                     id="shippingCost"
-                    required
                     onChange={(e) => setValues({...values, shippingCost: e.target.value })}
                     value={values.shippingCost}
                     name="shippingCost"

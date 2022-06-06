@@ -12,7 +12,7 @@ export const getAllBoxes = createAsyncThunk(
 export const createNewBox = createAsyncThunk(
     "box/createNewBox",
     async ({ values }) => {
-        return fetch ("https://localhost:8080/api/box/v1/box", {
+        return fetch ("http://localhost:8080/api/box/v1/box", {
             method: "POST",
             headers: {
                 Accept: "application/json",
