@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { rgbValueConverter } from "../components/utils/RgbValueConverter";
+import { ColorPicker } from "../components/form/ColorPicker";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
 
 function BoxFormView() {
@@ -49,10 +51,12 @@ function BoxFormView() {
 
             <div>
                 <label>Box colour</label>
+                <input type="text" id="colorText" value={values.color} placeholder="Click to show color picker">
+                </input>
                 <input
-                    type="text"
+                    type="color"
                     id="color"
-                    onChange={(e) => setValues({...values, color: e.target.value })}
+                    onChange={(e) => setValues({...values, color: rgbValueConverter(e.target.value) })}
                     value={values.color}
                     name="color"
                 >
