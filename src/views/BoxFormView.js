@@ -6,14 +6,14 @@ import { createNewBox } from "../redux/slices/BoxFormSlice"
 
 function BoxFormView() {
 
-    const [ values, setValues ] = useState({ name: "", weight: null, color: "", shippingCost: null });
+    const [ values, setValues ] = useState({ name: "", weight: null, color: "", country: "" });
 
     const dispatch = useDispatch();
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
         dispatch(createNewBox({values}))
-        setValues({ name: "", weight: null, color: "", shippingCost: null });
+        setValues({ name: "", weight: null, color: "", country: null });
         console.log(values);
     }
 
@@ -66,24 +66,16 @@ function BoxFormView() {
             </div>
 
             <div>
-                <label>ShippingCost</label>
-                <input
-                    type="number"
-                    id="shippingCost"
-                    onChange={(e) => setValues({...values, shippingCost: e.target.value })}
-                    value={values.shippingCost}
-                    name="shippingCost"
-                >
-                </input>
-            </div>
-
-            <div>
                 <label>Country</label>
-                <select id="dropdown">
-                    <option value="Sweden">Sweden</option>
-                    <option value="China">China</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Australia">Australia</option>
+                <select
+                    id="dropdown"
+                    onChange={(e) => setValues({ ...values, country: e.target.value })}
+                    name="country"
+                >
+                    <option value="SWEDEN">Sweden</option>
+                    <option value="CHINA">China</option>
+                    <option value="BRAZIL">Brazil</option>
+                    <option value="AUSTRALIA">Australia</option>
                 </select>
             </div>
             

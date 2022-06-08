@@ -22,7 +22,7 @@ export const createNewBox = createAsyncThunk(
                 name: values.name,
                 weight: values.weight,
                 color: values.color,
-                shippingCost: values.shippingCost
+                country: values.country
             }),
         }).then((res) => res.json());
     }
