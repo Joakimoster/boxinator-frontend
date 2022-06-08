@@ -12,7 +12,7 @@ const boxSlice = createSlice({
     initialState: {
         loading: false,
         boxes: [],
-        status: null
+        status: null,
     },
 
     extraReducers: (builder) => {

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { rgbValueConverter } from "../components/utils/RgbValueConverter";
 import { ColorPicker } from "../components/form/ColorPicker";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
+import { incrementTotalRows } from "../redux/slices/ValueIncrementSlice";
 
 function BoxFormView() {
 
@@ -10,10 +11,15 @@ function BoxFormView() {
 
     const dispatch = useDispatch();
 
+    const totalRows = useSelector((state) => state.incrementer.totalRows)
+    //const { rows } = useSelector((state) => state.totalRows);
+
     const handleOnSubmit = (e) => {
         e.preventDefault();
         dispatch(createNewBox({values}))
         setValues({ name: "", weight: null, color: "", country: "" });
+        //dispatch(incrementTotalRows)
+        //console.log(incrementTotalRows +"rows");
         console.log(values);
     }
 
