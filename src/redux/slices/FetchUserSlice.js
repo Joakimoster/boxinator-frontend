@@ -12,9 +12,24 @@ const boxSlice = createSlice({
     initialState: {
         loading: false,
         boxes: [],
-        status: null,
+        status: 'idle',
+        totalWeight: 0,
+        totalShippingCost: 0,
     },
 
+    reducers: {
+        calculateTotalShippingCost: (state) => {
+            let shippingCost = 0;
+            let weight = 0;
+            state.boxes.forEach((item) => {
+                const totalCost = item.weight * item.country;   //Todo country är en string och kan inte användas i *(gånger).
+                shippingCost += totalCost;
+                weight += item.weight;
+            });
+            state.totalShippingCost = shippingCost;
+            state.totalWeight = weight;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state) => {
             state.loading = true
@@ -30,6 +45,8 @@ const boxSlice = createSlice({
             state.status = "rejected"
         })
     }   
-})
+});
+
+export const { calculateTotalWeight, calculateTotalShippingCost } = boxSlice.actions
 
 export default boxSlice.reducer

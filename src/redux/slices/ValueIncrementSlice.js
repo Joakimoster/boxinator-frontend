@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
-const valueIncrementerSlice = createSlice({
+export const valueIncrementerSlice = createSlice({
     name: 'incrementer',
     initialState : {
         totalWeight: 0,
@@ -11,6 +10,9 @@ const valueIncrementerSlice = createSlice({
     },
 
     reducers: {
+        increment: (state) => {
+            state.totalWeight += 1
+        },
         incrementTotalWeight: (state, action) => {
             state.totalWeight = action.payload;
         },
@@ -21,8 +23,8 @@ const valueIncrementerSlice = createSlice({
             state.totalRows +=1;
         }
     },
-})
+});
 
-//export const { incrementTotalRows } = createSlice.actions
+export const { increment } = valueIncrementerSlice.actions
 
 export default valueIncrementerSlice.reducer
