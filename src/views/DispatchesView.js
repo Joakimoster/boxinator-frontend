@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { createNewBox, getAllBoxes } from "../redux/slices/BoxFormSlice"
+import { fetchUsers } from "../redux/slices/FetchUserSlice";
 
 function DispatchesView() {
 
-    const box = useSelector((state) => state.box);
     const dispatch = useDispatch();
-
+    const { boxes } = useSelector((state) => state.boxes);
+    
     useEffect(() => {
-        dispatch(getAllBoxes());
+        dispatch(fetchUsers());
     }, [])
 
     return (
@@ -22,16 +23,7 @@ function DispatchesView() {
                         <th>Shipping cost</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {box.map((item) => (
-                        <tr>
-                            <td>{item.name}</td>
-                            <td>{item.weight}</td>
-                            <td>{item.color}</td>
-                            <td>{item.shippingCost}</td>
-                        </tr>
-                    ))}
-                </tbody>
+                {boxes && boxes.map((box, i) => <h1 key={i}>{box.name}</h1>)}
             </table>
         </div>
     )

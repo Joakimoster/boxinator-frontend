@@ -1,14 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const getAllBoxes = createAsyncThunk(
-    "box/getAllBoxes",
-    async () => {
-        return fetch ("http://localhost:8080/api/box/v1/boxes")
-        .then((res) => {
-            res.json();
-        });
-    });
-
 export const createNewBox = createAsyncThunk(
     "box/createNewBox",
     async ({ values }) => {
@@ -29,7 +20,6 @@ export const createNewBox = createAsyncThunk(
 )
 
 const boxFormSlice = createSlice({
-
     name: 'boxes',
     initialState: {
         box: [],
@@ -38,7 +28,6 @@ const boxFormSlice = createSlice({
     },
 
     extraReducers: {
-
         [createNewBox.pending]: (state, action) => {
             state.loading = true;
         },
@@ -50,19 +39,7 @@ const boxFormSlice = createSlice({
             state.loading = false;
             state.error = action.error;
         },
-        [getAllBoxes.pending]: (state, action) => {
-            state.loading = true;
-        },
-        [getAllBoxes.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.box = [action.payload];
-        },
-        [getAllBoxes.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.error;
-        }
     }
-}
-)
+})
 
 export default boxFormSlice.reducer;

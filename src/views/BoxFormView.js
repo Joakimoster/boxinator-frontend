@@ -13,7 +13,7 @@ function BoxFormView() {
     const handleOnSubmit = (e) => {
         e.preventDefault();
         dispatch(createNewBox({values}))
-        setValues({ name: "", weight: null, color: "", country: null });
+        setValues({ name: "", weight: null, color: "", country: "" });
         console.log(values);
     }
 
