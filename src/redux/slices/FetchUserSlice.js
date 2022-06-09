@@ -22,8 +22,7 @@ const boxSlice = createSlice({
             let shippingCost = 0;
             let weight = 0;
             state.boxes.forEach((item) => {
-                const totalCost = item.weight * item.country;   //Todo country är en string och kan inte användas i *(gånger).
-                shippingCost += totalCost;
+                shippingCost += item.shippingCost;
                 weight += item.weight;
             });
             state.totalShippingCost = shippingCost;

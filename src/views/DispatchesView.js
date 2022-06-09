@@ -44,15 +44,14 @@ function DispatchesView() {
                                <td>{box.weight}</td>
                                <td>{box.color}</td>
                                <td>{box.shippingCost}</td>
-                               <td>{+(box.weight * box.country).toFixed(2)}</td>
                            </tr>
                        );
                    })}
                 </tbody>
             </table>
             <div>
-                <h3>Total weight from all boxes:<span>{totalWeight}</span></h3>
-                <h3>Total shipping cost from all boxes:<span>{+(totalShippingCost).toFixed(2)}</span></h3>
+                <h3>Total weight from all boxes:<span>{(totalWeight).toFixed()}</span></h3>
+                <h3>Total shipping cost from all boxes:<span>{(totalShippingCost).toFixed()}</span></h3>
             </div>
         </div>
     )
