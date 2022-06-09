@@ -7,6 +7,7 @@ function DispatchesView() {
 
     const dispatch = useDispatch();
     const boxStatus = useSelector(state => state.boxes.status)
+
     const { boxes, totalShippingCost, totalWeight } = useSelector((state) => state.boxes);
     
     useEffect(() => {
@@ -42,7 +43,7 @@ function DispatchesView() {
                            <tr>
                                <td>{box.name}</td>
                                <td>{(box.weight).toFixed()}</td>
-                               <td>{box.color}</td>
+                               <td style={{backgroundColor: `${box.color}`}}></td>
                                <td>{(box.shippingCost).toFixed()}</td>
                            </tr>
                        );
