@@ -43,55 +43,58 @@ function BoxFormView() {
 
     return (
         
-        <form onSubmit={onSubmit}>
-            <h1>Add a new box</h1>
-            <p>Welcome to boxinator application!</p>
+        <div>
+            <form onSubmit={onSubmit}>
+                <h1>Add a new box</h1>
+                <p>Welcome to boxinator application!</p>
 
-            <div>
-                <label>Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    onChange={(e) => setValues({...values, name: e.target.value })}
-                    value={values.name}
-                    required
-                >
-                </input>
-            </div>
+                <div>
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={(e) => setValues({ ...values, name: e.target.value })}
+                        value={values.name}
+                        required
+                    >
+                    </input>
+                </div>
 
-            <div>
-                <label>Weight</label>
-                <input
-                    type="number"
-                    min="0"
-                    onKeyPress={preventMinus}
-                    id="weight"
-                    value={values.weight}
-                    onChange={(e)=> {handleOnChange(e); setValues({...values, weight: e.target.value})}}
-                    name="weight"
-                    required
-                >
-                </input>
-            </div>
+                <div>
+                    <label>Weight</label>
+                    <input
+                        type="number"
+                        min="0"
+                        onKeyPress={preventMinus}
+                        id="weight"
+                        value={values.weight}
+                        onChange={(e) => { handleOnChange(e); setValues({ ...values, weight: e.target.value }) }}
+                        name="weight"
+                        required
+                    >
+                    </input>
+                </div>
 
-            <div>
-                <label>Box colour</label>
-                <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
-                >
-                    {showColorPicker ? <label>Click to close color picker</label> : <label> Click to show colour picker</label>}
-                </button>
+                <div>
+                    <label>Box colour</label>
+                    <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
+                    >
+                        {showColorPicker ? <label>Click to close color picker</label> : <label> Click to show colour picker</label>}
+                    </button>
 
-                {showColorPicker ? <input 
-                type="color" 
-                value= "color" 
-                onChange={(e) => {setColor(e.target.value); 
-                    setValues({ ...values, color: e.target.value})}} 
-                    id="colors" /> : null}
-                <h2>You picked color: { rgbValueConverter (values.color)}</h2>
-            </div>
+                    {showColorPicker ? <input
+                        type="color"
+                        value="color"
+                        onChange={(e) => {
+                            setColor(e.target.value);
+                            setValues({ ...values, color: e.target.value })
+                        }}
+                        id="colors" /> : null}
+                    <h2>You picked color: {rgbValueConverter(values.color)}</h2>
+                </div>
 
-            {/*<div>
+                {/*<div>
                 <label>Box colour</label>
                 <input
                     type="text"
@@ -112,24 +115,26 @@ function BoxFormView() {
                 </input>
             </div>*/}
 
-            <div>
-                <label>Country</label>
-                <select
-                    id="dropdown"
-                    onChange={(e) => setValues({ ...values, country: e.target.value })}
-                    name="country"
-                    required
-                    value={values.country}
-                >
-                    <option value="SWEDEN">Sweden</option>
-                    <option value="CHINA">China</option>
-                    <option value="BRAZIL">Brazil</option>
-                    <option value="AUSTRALIA">Australia</option>
-                </select>
-            </div>
+                <div>
+                    <label>Country</label>
+                    <select
+                        id="dropdown"
+                        onChange={(e) => setValues({ ...values, country: e.target.value })}
+                        name="country"
+                        required
+                        value={values.country}
+                    >
+                        <option value="SWEDEN">Sweden</option>
+                        <option value="CHINA">China</option>
+                        <option value="BRAZIL">Brazil</option>
+                        <option value="AUSTRALIA">Australia</option>
+                    </select>
+                </div>
 
-            <button type="submit" onClick={handleReset} >Save</button>
-        </form>
+                <button type="submit" onClick={handleReset} >Save</button>
+            </form>  
+        </div>
+        
     )
 }
 
