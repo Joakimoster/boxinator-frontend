@@ -41,9 +41,9 @@ function DispatchesView() {
                        return (
                            <tr>
                                <td>{box.name}</td>
-                               <td>{box.weight}</td>
+                               <td>{(box.weight).toFixed()}</td>
                                <td>{box.color}</td>
-                               <td>{box.shippingCost}</td>
+                               <td>{(box.shippingCost).toFixed()}</td>
                            </tr>
                        );
                    })}
