@@ -1,12 +1,9 @@
 import React from "react";
 import { useState } from "react"
-import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux"
 import { rgbValueConverter } from "../components/utils/RgbValueConverter";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup"
-import { ColorPicker } from "../components/form/ColorPicker";
+import "../style/viewStyle.css";
 
 function BoxFormView() {
 
@@ -43,12 +40,10 @@ function BoxFormView() {
 
     return (
         
-        <div>
+        <div className="main-container">
             <form onSubmit={onSubmit}>
-                <h1>Add a new box</h1>
-                <p>Welcome to boxinator application!</p>
 
-                <div>
+                <div className="input-container">
                     <label>Name</label>
                     <input
                         type="text"
@@ -61,7 +56,7 @@ function BoxFormView() {
                     </input>
                 </div>
 
-                <div>
+                <div className="input-container">
                     <label>Weight</label>
                     <input
                         type="number"
@@ -76,7 +71,7 @@ function BoxFormView() {
                     </input>
                 </div>
 
-                <div>
+                <div className="input-container">
                     <label>Box colour</label>
                     <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
                     >
@@ -115,7 +110,7 @@ function BoxFormView() {
                 </input>
             </div>*/}
 
-                <div>
+                <div className="input-container">
                     <label>Country</label>
                     <select
                         id="dropdown"
@@ -130,8 +125,10 @@ function BoxFormView() {
                         <option value="AUSTRALIA">Australia</option>
                     </select>
                 </div>
-
-                <button type="submit" onClick={handleReset} >Save</button>
+                <div className="submit-button-container">
+                   <button className="temp" type="submit" onClick={handleReset} >Save</button> 
+                </div>
+                
             </form>  
         </div>
         
