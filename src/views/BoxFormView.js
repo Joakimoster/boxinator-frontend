@@ -1,88 +1,111 @@
+import React from "react";
 import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
+import { rgbValueConverter } from "../components/utils/RgbValueConverter";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
+import "../style/viewStyle.css";
 
 function BoxFormView() {
 
-    const [ values, setValues ] = useState({ name: "", weight: null, color: "", shippingCost: null });
+    const [ color, setColor ] = useState('#fff');
 
-    const { box, loading } = useSelector((state) => ({...state.app}))
+    const [ showColorPicker, setShowColorPicker ] = useState(false);
+
+    const [ values, setValues ] = useState({ name: "", weight: 0, color: "", country: "" });
 
     const dispatch = useDispatch();
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault();
-        dispatch(createNewBox({values}))
-        setValues({ name: "", weight: null, color: "", shippingCost: null });
+    const onSubmit = (e) => {
         console.log(values);
+        dispatch(createNewBox({ values }))
+        handleReset();
+        e.preventDefault();
+    }
+
+    const preventMinus = (e) => {
+        if (e.code === 'Minus') {
+            e.preventDefault();
+        }
+    };
+
+    const handleReset = () => {
+        setValues({name: '', weight: 0, color: '', country:''});
     }
 
     return (
-        <form onSubmit={handleOnSubmit}>
+        
+        <div className="main-container">
+            <form onSubmit={onSubmit}>
 
-            <h1>Add a new box</h1>
-            <p>Welcome to boxinator application!</p>
+                <div className="input-container">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={(e) => setValues({ ...values, name: e.target.value })}
+                        value={values.name}
+                        required
+                    >
+                    </input>
+                </div>
 
-            <div>
-                <label>Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    onChange={(e) => setValues({...values, name: e.target.value })}
-                    value={values.name}
-                    name="name"
-                >
-                </input>
-            </div>
+                <div className="input-container">
+                    <label>Weight</label>
+                    <input
+                        type="number"
+                        min="0"
+                        onKeyPress={preventMinus}
+                        id="weight"
+                        value={values.weight}
+                        onChange={(e) => setValues({ ...values, weight: e.target.value })}
+                        name="weight"
+                        required
+                    >
+                    </input>
+                </div>
 
-            <div>
-                <label>Weight</label>
-                <input
-                    type="number"
-                    id="weight"
-                    onChange={(e) => setValues({...values, weight: e.target.value })}
-                    value={values.weight}
-                    name="weight"
-                >
-                </input>
-            </div>
+                <div className="input-container">
+                    <label>Box colour</label>
+                    <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
+                    >
+                        {showColorPicker ? <label>Click to close color picker</label> : <label> Click to show colour picker</label>}
+                    </button>
 
-            <div>
-                <label>Box colour</label>
-                <input
-                    type="text"
-                    id="color"
-                    onChange={(e) => setValues({...values, color: e.target.value })}
-                    value={values.color}
-                    name="color"
-                >
-                </input>
-            </div>
+                    {showColorPicker ? <input
+                        type="color"
+                        value="color"
+                        onChange={(e) => {
+                            setColor(e.target.value);
+                            setValues({ ...values, color: e.target.value })
+                        }}
+                        id="colors" /> : null}
+                    <h2>You picked color: {rgbValueConverter(values.color)}</h2>
+                </div>
 
-            <div>
-                <label>ShippingCost</label>
-                <input
-                    type="number"
-                    id="shippingCost"
-                    onChange={(e) => setValues({...values, shippingCost: e.target.value })}
-                    value={values.shippingCost}
-                    name="shippingCost"
-                >
-                </input>
-            </div>
-
-            <div>
-                <label>Country</label>
-                <select id="dropdown">
-                    <option value="Sweden">Sweden</option>
-                    <option value="China">China</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Australia">Australia</option>
-                </select>
-            </div>
-            
-            <button type="sumbit">Save</button>
-        </form>
+                <div className="input-container">
+                    <label>Country</label>
+                    <select
+                        id="dropdown"
+                        onChange={(e) => setValues({ ...values, country: e.target.value })}
+                        name="country"
+                        required
+                        value={values.country}
+                    >   
+                        <option disabled selected></option>
+                        <option value="SWEDEN">Sweden</option>
+                        <option value="CHINA">China</option>
+                        <option value="BRAZIL">Brazil</option>
+                        <option value="AUSTRALIA">Australia</option>
+                    </select>
+                </div>
+                <div className="submit-button-container">
+                   <button className="temp" type="submit" >Save</button> 
+                </div>
+                
+            </form>  
+        </div>
+        
     )
 }
 
