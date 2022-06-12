@@ -7,20 +7,18 @@ import "../style/viewStyle.css";
 
 function BoxFormView() {
 
-    const [ initialState, setInitialState ] = useState(0);
-
     const [ color, setColor ] = useState('#fff');
 
     const [ showColorPicker, setShowColorPicker ] = useState(false);
 
-    const [ values, setValues ] = useState({ name: "", weight: 0, color: "", country: "SWEDEN" });
+    const [ values, setValues ] = useState({ name: "", weight: 0, color: "", country: "" });
 
     const dispatch = useDispatch();
 
     const onSubmit = (e) => {
-        console.log(values); 
+        console.log(values);
         dispatch(createNewBox({ values }))
-        setValues({name: '', weight: 0, color: '', country:''});
+        handleReset();
         e.preventDefault();
     }
 
@@ -30,12 +28,8 @@ function BoxFormView() {
         }
     };
 
-    const handleOnChange = (e) => {
-        setInitialState(e.target.value);
-    }
-
     const handleReset = () => {
-        setInitialState(0);
+        setValues({name: '', weight: 0, color: '', country:''});
     }
 
     return (
@@ -64,7 +58,7 @@ function BoxFormView() {
                         onKeyPress={preventMinus}
                         id="weight"
                         value={values.weight}
-                        onChange={(e) => { handleOnChange(e); setValues({ ...values, weight: e.target.value }) }}
+                        onChange={(e) => setValues({ ...values, weight: e.target.value })}
                         name="weight"
                         required
                     >
@@ -89,27 +83,6 @@ function BoxFormView() {
                     <h2>You picked color: {rgbValueConverter(values.color)}</h2>
                 </div>
 
-                {/*<div>
-                <label>Box colour</label>
-                <input
-                    type="text"
-                    id="colorText"
-                    placeholder="Click to show color picker"
-                    value={values.color}
-                    required
-                >
-                </input>
-                <input
-                    type="color"
-                    id="color"
-                    onChange={(e) => setValues({ ...values, color: rgbValueConverter(e.target.value) })}
-                    value={values.color}
-                    name="color"
-                    required
-                >
-                </input>
-            </div>*/}
-
                 <div className="input-container">
                     <label>Country</label>
                     <select
@@ -118,7 +91,8 @@ function BoxFormView() {
                         name="country"
                         required
                         value={values.country}
-                    >
+                    >   
+                        <option disabled selected></option>
                         <option value="SWEDEN">Sweden</option>
                         <option value="CHINA">China</option>
                         <option value="BRAZIL">Brazil</option>
@@ -126,7 +100,7 @@ function BoxFormView() {
                     </select>
                 </div>
                 <div className="submit-button-container">
-                   <button className="temp" type="submit" onClick={handleReset} >Save</button> 
+                   <button className="temp" type="submit" >Save</button> 
                 </div>
                 
             </form>  

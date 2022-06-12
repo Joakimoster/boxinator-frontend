@@ -45,8 +45,8 @@ function DispatchesView() {
                     </tbody>
                 </table>
                 <div className="calculations-view">
-                    <h3>Total weight from all boxes:<span>{(totalWeight).toFixed()}</span></h3>
-                    <h3>Total shipping cost from all boxes:<span>{(totalShippingCost).toFixed()}</span></h3>
+                    <h3>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h3>
+                    <h3>Total shipping cost from all boxes :<span>{(totalShippingCost).toFixed()}</span></h3>
                 </div>
             </div>
 

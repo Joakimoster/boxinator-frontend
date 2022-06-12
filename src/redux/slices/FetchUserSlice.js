@@ -21,27 +21,29 @@ const boxSlice = createSlice({
         calculateTotalShippingCost: (state) => {
             let shippingCost = 0;
             let weight = 0;
+
             state.boxes.forEach((item) => {
                 shippingCost += item.shippingCost;
                 weight += item.weight;
             });
+            
             state.totalShippingCost = shippingCost;
             state.totalWeight = weight;
         },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state) => {
-            state.loading = true
-            state.status = "loading"
+            state.loading = true;
+            state.status = "loading";
         })
         builder.addCase(fetchUsers.fulfilled, (state, action) => {
             state.loading = false;
-            state.boxes = action.payload
-            state.status = "success"
+            state.boxes = action.payload;
+            state.status = "success";
         })
         builder.addCase(fetchUsers.rejected, (state, action) => {
             state.loading = false;
-            state.status = "rejected"
+            state.status = "rejected";
         })
     }   
 });
