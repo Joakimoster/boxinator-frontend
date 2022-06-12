@@ -20,8 +20,9 @@ function DispatchesView() {
     }, [boxStatus, dispatch])
 
     return (
-        <div className="table-container">
-            <div>
+        <div className="table-container" data-testid="dispatches-view-test">
+            <div data-testid="dispatches-element-1">
+                <h1>Boxlist</h1>
                 <table>
                     <thead>
                         <tr>
