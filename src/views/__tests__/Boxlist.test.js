@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 describe("Dispatches view component", () => {
+    
     it("should render the DispatchesView", () => {
         const { getByTestId } = render(<Provider store={store}><DispatchesView/></Provider>);
         const dispatchesViewDiv = getByTestId("dispatchesView");

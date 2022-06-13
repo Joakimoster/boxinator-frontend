@@ -54,7 +54,7 @@ td {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: auto;
+    width: 200px;
     justify-self: center;
 }
 
