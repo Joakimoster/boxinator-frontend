@@ -20,10 +20,10 @@ function DispatchesView() {
     }, [boxStatus, dispatch])
 
     return (
-        <div className="table-container" data-testid="dispatches-view-test">
+        <div className="table-container" data-testid="dispatchesView">
             <div data-testid="dispatches-element-1">
                 <h1>Boxlist</h1>
-                <table>
+                <table data-testid="dispatchesTable">
                     <thead>
                         <tr>
                             <th>Reciever</th>
@@ -45,7 +45,7 @@ function DispatchesView() {
                         })}
                     </tbody>
                 </table>
-                <div className="calculations-view">
+                <div className="calculations-view" data-testid="calculations">
                     <h3>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h3>
                     <h3>Total shipping cost from all boxes :<span>{(totalShippingCost).toFixed()}</span></h3>
                 </div>

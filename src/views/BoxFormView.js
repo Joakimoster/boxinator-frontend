@@ -34,7 +34,7 @@ function BoxFormView() {
 
     return (
         
-        <div className="main-container">
+        <div className="main-container" data-testid="boxFormView">
             <form onSubmit={onSubmit}>
 
                 <div className="input-container">
@@ -46,6 +46,7 @@ function BoxFormView() {
                         onChange={(e) => setValues({ ...values, name: e.target.value })}
                         value={values.name}
                         required
+                        data-testid="inputName"
                     >
                     </input>
                 </div>
@@ -79,7 +80,8 @@ function BoxFormView() {
                             setColor(e.target.value);
                             setValues({ ...values, color: e.target.value })
                         }}
-                        id="colors" /> : null}
+                        id="colors"
+                        /> : null}
                     <h2>You picked color: {rgbValueConverter(values.color)}</h2>
                 </div>
 
