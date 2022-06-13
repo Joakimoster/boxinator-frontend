@@ -62,6 +62,7 @@ function BoxFormView() {
                         onChange={(e) => setValues({ ...values, weight: e.target.value })}
                         name="weight"
                         required
+                        data-testid="inputWeight"
                     >
                     </input>
                 </div>
@@ -81,6 +82,7 @@ function BoxFormView() {
                             setValues({ ...values, color: e.target.value })
                         }}
                         id="colors"
+                        data-testid="inputColor"
                         /> : null}
                     <h2>You picked color: {rgbValueConverter(values.color)}</h2>
                 </div>
@@ -93,12 +95,13 @@ function BoxFormView() {
                         name="country"
                         required
                         value={values.country}
+                        data-testid="inputCountry"
                     >   
                         <option disabled selected></option>
-                        <option value="SWEDEN">Sweden</option>
-                        <option value="CHINA">China</option>
-                        <option value="BRAZIL">Brazil</option>
-                        <option value="AUSTRALIA">Australia</option>
+                        <option data-testid="option1" value="SWEDEN">Sweden</option>
+                        <option data-testid="option2" value="CHINA">China</option>
+                        <option data-testid="option3" value="BRAZIL">Brazil</option>
+                        <option data-testid="option4" value="AUSTRALIA">Australia</option>
                     </select>
                 </div>
                 <div className="submit-button-container">
