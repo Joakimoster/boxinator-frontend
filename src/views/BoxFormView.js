@@ -1,11 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { rgbValueConverter } from "../components/utils/RgbValueConverter";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
 import "../style/viewStyle.css";
+import { ColorPicker } from "../components/form/ColorPicker";
 
 function BoxFormView() {
+
+    const navigate = useNavigate();
 
     const [ color, setColor ] = useState('#fff');
 
@@ -30,6 +34,10 @@ function BoxFormView() {
 
     const handleReset = () => {
         setValues({name: '', weight: 0, color: '', country:''});
+    }
+
+    const goToBoxesScreen = () => {
+        navigate("/listboxes")
     }
 
     return (
@@ -68,7 +76,8 @@ function BoxFormView() {
                 </div>
 
                 <div className="input-container">
-                    <label>Box colour</label>
+        <div>
+            <label>Box colour</label>
                     <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
                     >
                         {showColorPicker ? <label>Click to close color picker</label> : <label> Click to show colour picker</label>}
@@ -85,6 +94,7 @@ function BoxFormView() {
                         data-testid="inputColor"
                         /> : null}
                     <h2>You picked color: {rgbValueConverter(values.color)}</h2>
+        </div>
                 </div>
 
                 <div className="input-container">
@@ -105,7 +115,10 @@ function BoxFormView() {
                     </select>
                 </div>
                 <div className="submit-button-container">
-                   <button className="temp" type="submit" >Save</button> 
+                   <button className="boxinator-button" type="submit">Save</button> 
+                </div>
+                <div>
+                    <button onClick={goToBoxesScreen}>To boxlist</button>
                 </div>
                 
             </form>  

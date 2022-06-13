@@ -48,6 +48,6 @@ const boxSlice = createSlice({
     }   
 });
 
-export const { calculateTotalWeight, calculateTotalShippingCost } = boxSlice.actions
+export const { calculateTotalShippingCost } = boxSlice.actions
 
 export default boxSlice.reducer
