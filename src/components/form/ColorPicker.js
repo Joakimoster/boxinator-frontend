@@ -20,6 +20,7 @@ export const ColorPicker = ({ label, inputProps, onChange, value }) => {
                 value={value}
                 id="colors"
                 data-testid="inputColor"
+                required
             /> : null}
             <h2>You picked color: {rgbValueConverter(value)}</h2>
         </div>

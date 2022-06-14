@@ -19,17 +19,21 @@ function BoxFormView() {
     const dispatch = useDispatch();
 
     const onSubmit = (e) => {
-        console.log(values);
-        dispatch(createNewBox({ values }))
-        handleReset();
         e.preventDefault();
+        if (values.color === "") {
+            alert('Please choose a color from the picker..')
+        } else {
+            console.log(values);
+            dispatch(createNewBox({ values }))
+            handleReset();
+        }
     }
 
     const preventMinus = (e) => {
         if (e.code === 'Minus') {
             e.preventDefault();
         }
-    };
+    }
 
     const handleReset = () => {
         setValues({name: '', weight: 0, color: '', country:''});
