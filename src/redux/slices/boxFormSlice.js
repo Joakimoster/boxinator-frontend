@@ -19,15 +19,41 @@ export const createNewBox = createAsyncThunk(
     }
 )
 
+export const addNewBox = createAsyncThunk(
+    "box/addNewBox",
+    async(payload) => {
+        const response = await fetch('http://localhost:8080/api/box/v1/box', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                name: payload.name,
+                weight: payload.weight,
+                color: payload.color,
+                country: payload.country
+            })
+        })
+        if(response.ok) {
+            const box = await response.json();
+            return { box };
+        }
+    }
+)
+
 const boxFormSlice = createSlice({
     name: 'boxes',
     initialState: {
-        box: [],
-        loading: false,
-        status: ''
+        //box: [],
+        //loading: false,
+        //status: ''
     },
     extraReducers: (builder) => {
-        builder.addCase(createNewBox.pending, (state, action) => {
+        builder.addCase(addNewBox.fulfilled, (state, action) => {
+            state.push(action.payload.box);
+        })
+        
+        /*builder.addCase(createNewBox.pending, (state, action) => {
             state.loading = true;
             state.status = "loading";
         })
@@ -40,7 +66,7 @@ const boxFormSlice = createSlice({
             state.loading = false;
             state.error = action.error;
             state.status = "rejected";
-        })
+        })*/
     }
 });
 

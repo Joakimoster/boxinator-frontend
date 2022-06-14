@@ -41,9 +41,9 @@ function DispatchesView() {
                         </tr>
                     </thead>
                     <tbody>
-                        {boxes.map((box) => {
+                        {boxes.map((box, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{box.name}</td>
                                     <td>{(box.weight).toFixed()}</td>
                                     <td style={{ backgroundColor: `${box.color}` }}></td>

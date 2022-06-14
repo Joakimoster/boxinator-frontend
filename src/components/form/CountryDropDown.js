@@ -1,15 +1,20 @@
-function CountryDropDown() {
-    return(
-        <div>
-            <label>Country</label>
-            <select>
-                <option value="Sweden">Sweden</option>
-                <option value="China">China</option>
-                <option value="Brazil">Brazil</option>
-                <option value="Australia">Australia</option>
-            </select>
-        </div>
+export const CountryDropDown = ({ inputProps, onChange, value }) => {
+
+    return (
+        <select
+            id="dropdown"
+            onChange={onChange}
+            name="country"
+            required
+            value={value}
+            data-testid="inputCountry"
+            defaultValue=""
+        >
+            <option value="" disabled>Choose a country</option>
+            <option data-testid="option1" value="SWEDEN">Sweden</option>
+            <option data-testid="option2" value="CHINA">China</option>
+            <option data-testid="option3" value="BRAZIL">Brazil</option>
+            <option data-testid="option4" value="AUSTRALIA">Australia</option>
+        </select>
     )
 }
-
-export default CountryDropDown
