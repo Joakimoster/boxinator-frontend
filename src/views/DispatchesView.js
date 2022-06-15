@@ -1,28 +1,36 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { calculateTotalShippingCost, calculateTotalWeight, fetchUsers } from "../redux/slices/FetchUserSlice";
+import { calculateTotalShippingCost, fetchBoxes } from "../redux/slices/FetchBoxDispatchesSlice";
 import "../style/viewStyle.css";
+import { useNavigate } from "react-router-dom";
 
 function DispatchesView() {
 
     const dispatch = useDispatch();
+    
     const boxStatus = useSelector(state => state.boxes.status)
 
     const { boxes, totalShippingCost, totalWeight } = useSelector((state) => state.boxes);
+
+    const navigate = useNavigate();
+
+    const goToBoxFormView = () => {
+        navigate("/addbox")
+    }
     
     useEffect(() => {
-        if(boxStatus === 'idle') {
-           dispatch(fetchUsers()); 
-        }
-        if(boxStatus === 'success') {
-            dispatch(calculateTotalShippingCost());
-        }
-    }, [boxStatus, dispatch])
+        dispatch(fetchBoxes());
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(calculateTotalShippingCost()); 
+    }, [boxes])
 
     return (
-        <div className="table-container">
-            <div>
-                <table>
+        <div className="table-container" data-testid="dispatchesView">
+            <div data-testid="dispatches-element-1">
+                <h1>Boxlist</h1>
+                <table data-testid="dispatchesTable">
                     <thead>
                         <tr>
                             <th>Reciever</th>
@@ -32,9 +40,9 @@ function DispatchesView() {
                         </tr>
                     </thead>
                     <tbody>
-                        {boxes.map((box) => {
+                        {boxes.map((box, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{box.name}</td>
                                     <td>{(box.weight).toFixed()}</td>
                                     <td style={{ backgroundColor: `${box.color}` }}></td>
@@ -44,12 +52,14 @@ function DispatchesView() {
                         })}
                     </tbody>
                 </table>
-                <div className="calculations-view">
+                <div className="calculations-view" data-testid="calculations">
                     <h3>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h3>
-                    <h3>Total shipping cost from all boxes :<span>{(totalShippingCost).toFixed()}</span></h3>
+                    <h3>Total shipping cost from all boxes: <span>{(totalShippingCost).toFixed()}</span></h3>
+                </div>
+                <div className="redirect-button">
+                    <button className="boxinator-button" onClick={goToBoxFormView}>Get back to the form..</button>
                 </div>
             </div>
-
         </div>
     )
 }

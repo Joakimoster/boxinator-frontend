@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-export const fetchUsers = createAsyncThunk(
-    'box/fetchusers',
+export const fetchBoxes = createAsyncThunk(
+    'box/fetchboxes',
     async () => {
         return fetch ('http://localhost:8080/api/box/v1/boxes')
         .then((response) => response.json());
@@ -32,22 +32,22 @@ const boxSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchUsers.pending, (state) => {
+        builder.addCase(fetchBoxes.pending, (state) => {
             state.loading = true;
             state.status = "loading";
         })
-        builder.addCase(fetchUsers.fulfilled, (state, action) => {
+        builder.addCase(fetchBoxes.fulfilled, (state, action) => {
             state.loading = false;
             state.boxes = action.payload;
             state.status = "success";
         })
-        builder.addCase(fetchUsers.rejected, (state, action) => {
+        builder.addCase(fetchBoxes.rejected, (state, action) => {
             state.loading = false;
             state.status = "rejected";
         })
     }   
 });
 
-export const { calculateTotalWeight, calculateTotalShippingCost } = boxSlice.actions
+export const { calculateTotalShippingCost } = boxSlice.actions
 
 export default boxSlice.reducer

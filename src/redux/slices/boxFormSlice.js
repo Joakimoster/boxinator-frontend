@@ -24,22 +24,24 @@ const boxFormSlice = createSlice({
     initialState: {
         box: [],
         loading: false,
-        error: null
+        status: ''
     },
-
     extraReducers: (builder) => {
         builder.addCase(createNewBox.pending, (state, action) => {
             state.loading = true;
-        }),
+            state.status = "loading";
+        })
         builder.addCase(createNewBox.fulfilled, (state, action) => {
             state.loading = false;
             state.box = action.payload;
-        }),
+            state.status = "success";
+        })
         builder.addCase(createNewBox.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error;
+            state.status = "rejected";
         })
     }
-})
+});
 
 export default boxFormSlice.reducer;
