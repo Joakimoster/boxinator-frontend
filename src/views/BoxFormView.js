@@ -101,11 +101,8 @@ function BoxFormView() {
 
                 <div className="submit-button-container">
                    <button className="boxinator-button" type="submit">Save</button> 
-                </div>
-                <div>
-                    <button onClick={goToBoxesScreen}>To boxlist</button>
-                </div>
-                
+                   <button className="boxinator-button" onClick={goToBoxesScreen}>To boxlist</button>
+                </div>   
             </form>  
         </div>
         

@@ -19,13 +19,12 @@ function DispatchesView() {
     }
     
     useEffect(() => {
-        if(boxStatus === 'idle') {
-           dispatch(fetchBoxes()); 
-        }
-        if(boxStatus === 'success') {
-            dispatch(calculateTotalShippingCost());
-        }
-    }, [boxStatus, dispatch])
+        dispatch(fetchBoxes());
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(calculateTotalShippingCost()); 
+    }, [boxes])
 
     return (
         <div className="table-container" data-testid="dispatchesView">
@@ -57,7 +56,7 @@ function DispatchesView() {
                     <h3>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h3>
                     <h3>Total shipping cost from all boxes: <span>{(totalShippingCost).toFixed()}</span></h3>
                 </div>
-                <div>
+                <div className="redirect-button">
                     <button className="boxinator-button" onClick={goToBoxFormView}>Get back to the form..</button>
                 </div>
             </div>

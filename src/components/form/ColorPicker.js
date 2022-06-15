@@ -7,7 +7,7 @@ export const ColorPicker = ({ label, inputProps, onChange, value }) => {
 
     return (
         
-        <div>
+        <div className="color-picker-div">
             <button type="button" onClick={() => setShowColorPicker(!showColorPicker)}
             >
                 {showColorPicker ? <label>Click to close color picker{label}</label> : <label> Click to show colour picker</label>}
