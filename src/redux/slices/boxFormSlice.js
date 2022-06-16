@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const createNewBox = createAsyncThunk(
     "box/createNewBox",
     async ({ values }) => {
-        return fetch ("http://localhost:8080/api/box/v1/box", {
+        return fetch ("http://localhost:8080/api/boxinator/v1/box", {
             method: "POST",
             headers: {
                 Accept: "application/json",

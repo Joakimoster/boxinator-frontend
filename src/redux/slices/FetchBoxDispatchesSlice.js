@@ -3,16 +3,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 export const fetchBoxes = createAsyncThunk(
     'box/fetchboxes',
     async () => {
-        return fetch ('http://localhost:8080/api/box/v1/boxes')
+        return fetch ('http://localhost:8080/api/boxinator/v1/boxes')
         .then((response) => response.json());
     })
 
 const boxSlice = createSlice({
     name: 'boxes',
     initialState: {
-        loading: false,
         boxes: [],
-        status: 'idle',
+        loading: false,
+        status: '',
         totalWeight: 0,
         totalShippingCost: 0,
     },

@@ -1,16 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { rgbValueConverter } from "../components/utils/RgbValueConverter";
 import { createNewBox } from "../redux/slices/BoxFormSlice"
 import "../style/viewStyle.css";
 import { ColorPicker } from "../components/form/ColorPicker";
 import { CountryDropDown } from "../components/form/CountryDropDown";
 
 function BoxFormView() {
-
-    const navigate = useNavigate();
 
     const [ color, setColor ] = useState('#fff');
 
@@ -37,10 +33,6 @@ function BoxFormView() {
 
     const handleReset = () => {
         setValues({name: '', weight: 0, color: '', country:''});
-    }
-
-    const goToBoxesScreen = () => {
-        navigate("/listboxes")
     }
 
     return (
@@ -101,7 +93,6 @@ function BoxFormView() {
 
                 <div className="submit-button-container">
                    <button className="boxinator-button" type="submit">Save</button> 
-                   <button className="boxinator-button" onClick={goToBoxesScreen}>To Boxlist</button>
                 </div>   
             </form>  
         </div>

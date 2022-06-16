@@ -2,19 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { calculateTotalShippingCostAndTotalWeight, fetchBoxes } from "../redux/slices/FetchBoxDispatchesSlice";
 import "../style/viewStyle.css";
-import { useNavigate } from "react-router-dom";
 
 function DispatchesView() {
 
     const dispatch = useDispatch();
 
     const { boxes, totalShippingCost, totalWeight } = useSelector((state) => state.boxes);
-
-    const navigate = useNavigate();
-
-    const goToBoxFormView = () => {
-        navigate("/addbox")
-    }
     
     useEffect(() => {
         dispatch(fetchBoxes());
@@ -53,9 +46,6 @@ function DispatchesView() {
                 <div className="calculations-view" data-testid="calculations">
                     <h2>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h2>
                     <h2>Total shipping cost from all boxes: <span>{(totalShippingCost).toFixed()}</span></h2>
-                </div>
-                <div className="redirect-button">
-                    <button className="boxinator-button" onClick={goToBoxFormView}>Get back to the form..</button>
                 </div>
             </div>
         </div>

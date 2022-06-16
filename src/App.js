@@ -9,18 +9,18 @@ import {
 import DispatchesView from './views/DispatchesView';
 import BoxFormView from './views/BoxFormView';
 import NoPage from './components/exception/NoPage';
+import NavBar from './components/navbar/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <NavBar/>
         <Routes>
           <Route path="/" element = { <Navigate to ="/addbox"/> } ></Route>
           <Route path="/addbox" element = { <BoxFormView/> } ></Route>
           <Route path="/listboxes" element = { <DispatchesView/> } ></Route>
           <Route path="*" element = { <NoPage/> } ></Route>
         </Routes>
-      </div>
     </BrowserRouter>
   );
 }
