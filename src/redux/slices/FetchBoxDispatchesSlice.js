@@ -18,7 +18,7 @@ const boxSlice = createSlice({
     },
 
     reducers: {
-        calculateTotalShippingCost: (state) => {
+        calculateTotalShippingCostAndTotalWeight: (state) => {
             let shippingCost = 0;
             let weight = 0;
 
@@ -48,6 +48,6 @@ const boxSlice = createSlice({
     }   
 });
 
-export const { calculateTotalShippingCost } = boxSlice.actions
+export const { calculateTotalShippingCostAndTotalWeight } = boxSlice.actions
 
 export default boxSlice.reducer

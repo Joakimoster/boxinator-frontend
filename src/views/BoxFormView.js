@@ -23,9 +23,9 @@ function BoxFormView() {
         if (values.color === "") {
             alert('Please choose a color from the picker..')
         } else {
-            console.log(values);
             dispatch(createNewBox({ values }))
             handleReset();
+            alert('Success! You may now see the box you saved in the Boxlist')
         }
     }
 
@@ -101,7 +101,7 @@ function BoxFormView() {
 
                 <div className="submit-button-container">
                    <button className="boxinator-button" type="submit">Save</button> 
-                   <button className="boxinator-button" onClick={goToBoxesScreen}>To boxlist</button>
+                   <button className="boxinator-button" onClick={goToBoxesScreen}>To Boxlist</button>
                 </div>   
             </form>  
         </div>
