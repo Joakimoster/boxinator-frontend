@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { calculateTotalShippingCost, fetchBoxes } from "../redux/slices/FetchBoxDispatchesSlice";
+import { calculateTotalShippingCostAndTotalWeight, fetchBoxes } from "../redux/slices/FetchBoxDispatchesSlice";
 import "../style/viewStyle.css";
 import { useNavigate } from "react-router-dom";
 
 function DispatchesView() {
 
     const dispatch = useDispatch();
-    
-    const boxStatus = useSelector(state => state.boxes.status)
 
     const { boxes, totalShippingCost, totalWeight } = useSelector((state) => state.boxes);
 
@@ -23,13 +21,13 @@ function DispatchesView() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(calculateTotalShippingCost()); 
+        dispatch(calculateTotalShippingCostAndTotalWeight()); 
     }, [boxes])
 
     return (
         <div className="table-container" data-testid="dispatchesView">
             <div data-testid="dispatches-element-1">
-                <h1>Boxlist</h1>
+                <h2>Current Boxlist, showing name of the reciever, the boxes weight, color and the shipping cost</h2>
                 <table data-testid="dispatchesTable">
                     <thead>
                         <tr>
@@ -53,8 +51,8 @@ function DispatchesView() {
                     </tbody>
                 </table>
                 <div className="calculations-view" data-testid="calculations">
-                    <h3>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h3>
-                    <h3>Total shipping cost from all boxes: <span>{(totalShippingCost).toFixed()}</span></h3>
+                    <h2>Total weight from all boxes: <span>{(totalWeight).toFixed()}</span></h2>
+                    <h2>Total shipping cost from all boxes: <span>{(totalShippingCost).toFixed()}</span></h2>
                 </div>
                 <div className="redirect-button">
                     <button className="boxinator-button" onClick={goToBoxFormView}>Get back to the form..</button>
