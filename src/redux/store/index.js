@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import BoxFormReducer from "../slices/BoxFormSlice"
+import BoxFormReducer from "../slices/FormBoxSlice"
 import FetchBoxDispatchesReducer from "../slices/FetchBoxDispatchesSlice"
 
 const store = configureStore({

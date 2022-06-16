@@ -24,7 +24,8 @@ const boxFormSlice = createSlice({
     initialState: {
         box: [],
         loading: false,
-        status: ''
+        status: '',
+        hej: ''
     },
     extraReducers: (builder) => {
         builder.addCase(createNewBox.pending, (state, action) => {

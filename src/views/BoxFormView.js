@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createNewBox } from "../redux/slices/BoxFormSlice"
+import { createNewBox } from "../redux/slices/FormBoxSlice"
 import "../style/viewStyle.css";
 import { ColorPicker } from "../components/form/ColorPicker";
 import { CountryDropDown } from "../components/form/CountryDropDown";
