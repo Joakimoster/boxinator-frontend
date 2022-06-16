@@ -7,6 +7,10 @@ The front end app contatins of two simple views, one form where the user can sen
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs all packages and scripts to be able to run the application.
+
 ### `npm start`
 
 Runs the app in the development mode.\
