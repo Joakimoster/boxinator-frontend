@@ -96,7 +96,6 @@ function BoxFormView() {
                 </div>   
             </form>  
         </div>
-        
     )
 }
 
